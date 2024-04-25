@@ -39,11 +39,28 @@
     border: 1px dashed red; 
     padding: 5px; 
     margin: 10px 0; 
-}
+    }
+    .inline-list {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .inline-list li {
+      margin-right: 20px;
+    }
+
+    .inline-list li:last-child {
+      margin-right: 0;
+    }
+
+
+
   </style>
 </head>
 
-<body class="bg-white dark:bg-black" style="overscroll-behavior: none">
+<body class="bg-white dark:bg-black dark" style="overscroll-behavior: none">
   <div class="flex w-full flex-col bg-white dark:bg-black">
     <div class="mx-auto w-full max-w-4xl px-4 py-12 pb-10 md:px-8">
       <div class="w-full flex flex-col justify-center items-center space-y-5 pb-10 rounded-lg">
@@ -86,7 +103,7 @@
             class="text-secondary font-sans cursor-pointer hover:text-primary dark:text-white dark:text-opacity-80 dark:hover:text-white dark:hover:text-opacity-100 transition duration-200 ease-in-out">Xiaowei Zhou<sup>1</sup></a>
         </div>
         <div class="row">
-          <ul class="text-secondary font-sans hover:text-primary dark:text-white dark:text-opacity-80 dark:hover:text-white dark:hover:text-opacity-100">
+          <ul class="inline-list text-secondary font-sans hover:text-primary dark:text-white dark:text-opacity-80 dark:hover:text-white dark:hover:text-opacity-100">
             <li> <sup>1</sup>Zhejiang University</li>
             <li><sup>2</sup>Ant Group</li>
             <li><sup>3</sup>Shenzhen University</li>
@@ -197,94 +214,112 @@
         <p class="text-justify block font-normal"> </p>
       </div>
       
-  <div class="pt-4" style="filter: none">
-    <div
-      class="relative grid w-full text-xs sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-base gap-2"
-      style="grid-template-columns: repeat(4, minmax(0, 1fr))">
-      <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-        <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-              object-fit: cover;
-              transform: scale(1);
-              transform-origin: center center;
-            ">
-          <source src="./videos/headset_2_video.mp4" type="video/mp4" />
-        </video>
+      <div class="pt-4" style="filter: none">
+        <div
+          class="relative grid w-full text-xs sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-base gap-2"
+          style="grid-template-columns: repeat(3, minmax(0, 1fr))">
+          <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+            <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                  object-fit: cover;
+                  transform: scale(1);
+                  transform-origin: center center;
+                ">
+              <source src="./videos/headset_2_video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+            <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                  object-fit: cover;
+                  transform: scale(1);
+                  transform-origin: center center;
+                ">
+              <source src="./videos/motor_helmet_video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <!-- 复制以下两个 div 块 -->
+          <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+            <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                  object-fit: cover;
+                  transform: scale(1);
+                  transform-origin: center center;
+                ">
+              <source src="./videos/telescope2_video.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
       </div>
-      <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-        <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-              object-fit: cover;
-              transform: scale(1);
-              transform-origin: center center;
-            ">
-          <source src="./videos/purse_video.mp4" type="video/mp4" />
-        </video>
+    
+    <div class="pt-4" style="filter: none">
+      <div
+        class="relative grid w-full text-xs sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-base gap-2"
+        style="grid-template-columns: repeat(3, minmax(0, 1fr))">
+        <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+          <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                object-fit: cover;
+                transform: scale(1);
+                transform-origin: center center;
+              ">
+            <source src="./videos/bookshelf_2_video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+          <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                object-fit: cover;
+                transform: scale(1);
+                transform-origin: center center;
+              ">
+            <source src="./videos/table2_video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <!-- 复制以下两个 div 块 -->
+        <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+          <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                object-fit: cover;
+                transform: scale(1);
+                transform-origin: center center;
+              ">
+            <source src="./videos/drill_video.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
-      <!-- 复制以下两个 div 块 -->
-      <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-        <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-              object-fit: cover;
-              transform: scale(1);
-              transform-origin: center center;
-            ">
-          <source src="./videos/motor_helmet_video.mp4" type="video/mp4" />
-        </video>
+    </div>
+    
+    <div class="pt-4" style="filter: none">
+      <div
+        class="relative grid w-full text-xs sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-base gap-2"
+        style="grid-template-columns: repeat(3, minmax(0, 1fr))">
+        <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+          <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                object-fit: cover;
+                transform: scale(1);
+                transform-origin: center center;
+              ">
+            <source src="./videos/top_stove_video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+          <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                object-fit: cover;
+                transform: scale(1);
+                transform-origin: center center;
+              ">
+            <source src="./videos/pan_video.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <!-- 复制以下两个 div 块 -->
+        <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
+          <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
+                object-fit: cover;
+                transform: scale(1);
+                transform-origin: center center;
+              ">
+            <source src="./videos/tap_video.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
-      <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-        <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-              object-fit: cover;
-              transform: scale(1);
-              transform-origin: center center;
-            ">
-          <source src="./videos/table2_video.mp4" type="video/mp4" />
-        </video>
-      </div>
     </div>
-  </div>
-</div>
-<div class="pt-4" style="filter: none">
-  <div
-    class="relative grid w-full text-xs sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-base gap-2"
-    style="grid-template-columns: repeat(4, minmax(0, 1fr))">
-    <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-      <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-            object-fit: cover;
-            transform: scale(1);
-            transform-origin: center center;
-          ">
-        <source src="./videos/tap_video.mp4" type="video/mp4" />
-      </video>
     </div>
-    <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-      <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-            object-fit: cover;
-            transform: scale(1);
-            transform-origin: center center;
-          ">
-        <source src="./videos/pan_video.mp4" type="video/mp4" />
-      </video>
-    </div>
-    <!-- 复制以下两个 div 块 -->
-    <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-      <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-            object-fit: cover;
-            transform: scale(1);
-            transform-origin: center center;
-          ">
-        <source src="./videos/telescope2_video.mp4" type="video/mp4" />
-      </video>
-    </div>
-    <div class="w-full h-full overflow-hidden" style="border-radius: 0.5rem">
-      <video autoplay="" loop="" playsinline="" muted="" class="w-full h-full" style="
-            object-fit: cover;
-            transform: scale(1);
-            transform-origin: center center;
-          ">
-        <source src="./videos/motor_2_video.mp4" type="video/mp4" />
-      </video>
-    </div>
-  </div>
-</div>
-</div>
+    
 
             <div class="text-primary dark:text-white">
               <div class="pt-4" style="filter: none">
