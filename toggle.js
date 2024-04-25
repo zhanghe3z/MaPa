@@ -7,8 +7,8 @@ let videoDesc = document.querySelector(".targetVideoDesc");
 let videoDescList = [
   'original image',
   'texture with a maze-like style',
-  'floral and ornate pattern',
-  'texture featuring the natural  curve of tree branches'
+  'texture featuring the natural  curve of tree branches',
+  'floral and ornate pattern'
 ]
 console.log(videoDesc);
 // 起始视频下标
