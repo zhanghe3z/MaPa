@@ -201,7 +201,7 @@
                   transform: scale(1.03);
                   filter: blur(25px);
                 ">
-              <source src="./videos/border.mp4" type="video/mp4" data-src="./videos/border.mp4" />
+              <source src="./videos/MaPa.mp4" type="video/mp4" data-src="./videos/MaPa.mp4" />
             </video>
           </div>
           <div class="space-y-3 pt-16" id="Overview">
@@ -547,19 +547,26 @@
 document.addEventListener('DOMContentLoaded', function() {
   const mainVideo = document.getElementById("mainVideo");
   const blurVideo = document.getElementById("blurVideo");
-  let videosReady = 0;
+  let loadStatus = { mainVideo: false, blurVideo: false };
 
   function checkAndPlayBothVideos() {
-    videosReady++;
-    if (videosReady === 2) {
+    if (loadStatus.mainVideo && loadStatus.blurVideo) {
       mainVideo.play();
       blurVideo.play();
     }
   }
 
-  mainVideo.addEventListener('canplaythrough', checkAndPlayBothVideos);
-  blurVideo.addEventListener('canplaythrough', checkAndPlayBothVideos);
+  mainVideo.addEventListener('canplaythrough', function() {
+    loadStatus.mainVideo = true;
+    checkAndPlayBothVideos();
+  });
 
+  blurVideo.addEventListener('canplaythrough', function() {
+    loadStatus.blurVideo = true;
+    checkAndPlayBothVideos();
+  });
+
+  // 同步两个视频的播放时间
   mainVideo.addEventListener("timeupdate", function() {
     if (Math.abs(mainVideo.currentTime - blurVideo.currentTime) > 0.1) {
       blurVideo.currentTime = mainVideo.currentTime;
