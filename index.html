@@ -193,7 +193,7 @@
                 ">
               <source src="./videos/MaPa.mp4" type="video/mp4" data-src="./videos/MaPa.mp4" />
             </video>
-            <video id="blurVideo" autoplay="" loop="" playsinline="" muted="" preload="auto" class="absolute top-0 left-0 w-full h-full"
+            <video id="blurVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
               style="
                   z-index: 0;
                   object-fit: cover;
@@ -521,27 +521,29 @@
     });
 
 
-    window.addEventListener('load', function() {
-    var mainVideo = document.getElementById('mainVideo');
-    var blurVideo = document.getElementById('blurVideo');
+    document.addEventListener('DOMContentLoaded', function() {
+      const video1 = document.getElementById("mainVideo");
+      const video2 = document.getElementById("blurVideo");
 
-    mainVideo.addEventListener('canplaythrough', function() {
-      if (blurVideo.currentTime < mainVideo.currentTime) {
-        blurVideo.currentTime = mainVideo.currentTime;
-      }
-
-      mainVideo.play();
-      blurVideo.play();
+      synchronizeVideos(video1, video2);
+      synchronizeVideos(video2, video1); 
     });
 
-    mainVideo.addEventListener('waiting', function() {
-      blurVideo.pause();
+    function synchronizeVideos(primaryVideo, secondaryVideo) {
+      primaryVideo.addEventListener("play", function() {
+          secondaryVideo.play();
     });
 
-    mainVideo.addEventListener('playing', function() {
-      blurVideo.play();
+    primaryVideo.addEventListener("pause", function() {
+        secondaryVideo.pause();
     });
-  });
+
+    primaryVideo.addEventListener("timeupdate", function() {
+        if (Math.abs(primaryVideo.currentTime - secondaryVideo.currentTime) > 0.1) {
+            secondaryVideo.currentTime = primaryVideo.currentTime;
+        }
+    });
+}
   </script>
 
 
