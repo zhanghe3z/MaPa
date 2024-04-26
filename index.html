@@ -88,36 +88,6 @@
     .inline-list li:last-child {
       margin-right: 0;
     }
-    .video-container {
-    position: relative;
-    width: 640px; 
-    height: 360px; 
-    overflow: hidden;
-    border-radius: 0.5rem; 
-  }
-
-  .video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; 
-  }
-
-  .video-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    filter: blur(25px); 
-    z-index: 0; 
-    transform: scale(1.03);
-  }
   </style>
 </head>
 
@@ -214,12 +184,7 @@
       </div>
       <div class="pt-2">
         <div class="pt-4" style="filter: none">
-          <div class="video-container">
-            <video id="mainVideo" autoplay loop playsinline muted>
-              <source src="./videos/MaPa.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <!-- <div class="relative w-full" style="padding-top: 56.25%">
+          <div class="relative w-full" style="padding-top: 56.25%">
             <video  id="mainVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full" style="
                   z-index: 1;
                   object-fit: cover;
@@ -227,8 +192,8 @@
                   transform: scale(1);
                 ">
               <source src="./videos/MaPa.mp4" type="video/mp4" data-src="./videos/MaPa.mp4" />
-            </video> -->
-            <!-- <video id="blurVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
+            </video>
+            <video id="blurVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
               style="
                   z-index: 0;
                   object-fit: cover;
@@ -236,8 +201,8 @@
                   transform: scale(1.03);
                   filter: blur(25px);
                 ">
-              <source src="./videos/MaPa.mp4" type="video/mp4" data-src="./videos/MaPa.mp4" />
-            </video> -->
+              <source src="./videos/border.mp4" type="video/mp4" data-src="./videos/border.mp4" />
+            </video>
           </div>
           <div class="space-y-3 pt-16" id="Overview">
             <h1 class="text-primary font-sans text-xl font-bold dark:text-white">
@@ -556,29 +521,57 @@
     });
 
 
-    document.addEventListener('DOMContentLoaded', function() {
-      const video1 = document.getElementById("mainVideo");
-      const video2 = document.getElementById("blurVideo");
+//     document.addEventListener('DOMContentLoaded', function() {
+//       const video1 = document.getElementById("mainVideo");
+//       const video2 = document.getElementById("blurVideo");
 
-      synchronizeVideos(video1, video2);
-      synchronizeVideos(video2, video1); 
-    });
+//       synchronizeVideos(video1, video2);
+//       synchronizeVideos(video2, video1); 
+//     });
 
-    function synchronizeVideos(primaryVideo, secondaryVideo) {
-      primaryVideo.addEventListener("play", function() {
-          secondaryVideo.play();
-    });
+//     function synchronizeVideos(primaryVideo, secondaryVideo) {
+//       primaryVideo.addEventListener("play", function() {
+//           secondaryVideo.play();
+//     });
 
-    primaryVideo.addEventListener("pause", function() {
-        secondaryVideo.pause();
-    });
+//     primaryVideo.addEventListener("pause", function() {
+//         secondaryVideo.pause();
+//     });
 
-    primaryVideo.addEventListener("timeupdate", function() {
-        if (Math.abs(primaryVideo.currentTime - secondaryVideo.currentTime) > 0.1) {
-            secondaryVideo.currentTime = primaryVideo.currentTime;
-        }
-    });
-}
+//     primaryVideo.addEventListener("timeupdate", function() {
+//         if (Math.abs(primaryVideo.currentTime - secondaryVideo.currentTime) > 0.1) {
+//             secondaryVideo.currentTime = primaryVideo.currentTime;
+//         }
+//     });
+// }
+document.addEventListener('DOMContentLoaded', function() {
+  const mainVideo = document.getElementById("mainVideo");
+  const blurVideo = document.getElementById("blurVideo");
+  let videosReady = 0;
+
+  function checkAndPlayBothVideos() {
+    videosReady++;
+    if (videosReady === 2) {
+      mainVideo.play();
+      blurVideo.play();
+    }
+  }
+
+  mainVideo.addEventListener('canplaythrough', checkAndPlayBothVideos);
+  blurVideo.addEventListener('canplaythrough', checkAndPlayBothVideos);
+
+  mainVideo.addEventListener("timeupdate", function() {
+    if (Math.abs(mainVideo.currentTime - blurVideo.currentTime) > 0.1) {
+      blurVideo.currentTime = mainVideo.currentTime;
+    }
+  });
+
+  blurVideo.addEventListener("timeupdate", function() {
+    if (Math.abs(blurVideo.currentTime - mainVideo.currentTime) > 0.1) {
+      mainVideo.currentTime = blurVideo.currentTime;
+    }
+  });
+});
   </script>
 
 
