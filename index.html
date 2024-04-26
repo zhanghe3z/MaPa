@@ -185,14 +185,14 @@
       <div class="pt-2">
         <div class="pt-4" style="filter: none">
           <div class="relative w-full" style="padding-top: 56.25%">
-            <video autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full" style="
+            <video  id="mainVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full" style="
                   z-index: 1;
                   object-fit: cover;
                   border-radius: 0.5rem;
                   transform: scale(1);
                 ">
               <source src="./videos/MaPa.mp4" type="video/mp4" data-src="./videos/MaPa.mp4" />
-            </video><video autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
+            </video><video id="blurVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
               style="
                   z-index: 0;
                   object-fit: cover;
@@ -518,7 +518,39 @@
       let codeText = copyTextContainer.innerText;
       navigator.clipboard.writeText(codeText);
     });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const mainVideo = document.getElementById('mainVideo');
+    const blurVideo = document.getElementById('blurVideo');
+    function syncPlay() {
+        if (!mainVideo.paused && blurVideo.paused) {
+            blurVideo.play();
+        } else if (!blurVideo.paused && mainVideo.paused) {
+            blurVideo.pause();
+        }
+    }
+    function syncTime() {
+        if (Math.abs(mainVideo.currentTime - blurVideo.currentTime) > 0.1) {
+            blurVideo.currentTime = mainVideo.currentTime;
+        }
+    }
+    function checkReadyState() {
+        if (mainVideo.readyState < 3 || blurVideo.readyState < 3) {
+            mainVideo.pause();
+            blurVideo.pause();
+        } else {
+            syncPlay();
+        }
+    }
+    mainVideo.onplay = mainVideo.onpause = mainVideo.ontimeupdate = checkReadyState;
+    blurVideo.onplay = blurVideo.onpause = blurVideo.ontimeupdate = checkReadyState;
+    mainVideo.ontimeupdate = blurVideo.ontimeupdate = syncTime;
+});
+
   </script>
+
+
 </body>
 
 </html>
