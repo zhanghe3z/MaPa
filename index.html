@@ -523,31 +523,14 @@
     document.addEventListener('DOMContentLoaded', function() {
     const mainVideo = document.getElementById('mainVideo');
     const blurVideo = document.getElementById('blurVideo');
-    function syncPlay() {
-        if (!mainVideo.paused && blurVideo.paused) {
-            blurVideo.play();
-        } else if (!blurVideo.paused && mainVideo.paused) {
-            blurVideo.pause();
+    setInterval(() => {
+        if (!mainVideo.paused && !blurVideo.paused) {
+            if (Math.abs(mainVideo.currentTime - blurVideo.currentTime) > 0.1) {
+                blurVideo.currentTime = mainVideo.currentTime;
+            }
         }
-    }
-    function syncTime() {
-        if (Math.abs(mainVideo.currentTime - blurVideo.currentTime) > 0.1) {
-            blurVideo.currentTime = mainVideo.currentTime;
-        }
-    }
-    function checkReadyState() {
-        if (mainVideo.readyState < 3 || blurVideo.readyState < 3) {
-            mainVideo.pause();
-            blurVideo.pause();
-        } else {
-            syncPlay();
-        }
-    }
-    mainVideo.onplay = mainVideo.onpause = mainVideo.ontimeupdate = checkReadyState;
-    blurVideo.onplay = blurVideo.onpause = blurVideo.ontimeupdate = checkReadyState;
-    mainVideo.ontimeupdate = blurVideo.ontimeupdate = syncTime;
+    }, 100);
 });
-
   </script>
 
 
