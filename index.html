@@ -192,7 +192,8 @@
                   transform: scale(1);
                 ">
               <source src="./videos/MaPa.mp4" type="video/mp4" data-src="./videos/MaPa.mp4" />
-            </video><video id="blurVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
+            </video>
+            <video id="blurVideo" autoplay="" loop="" playsinline="" muted="" class="absolute top-0 left-0 w-full h-full"
               style="
                   z-index: 0;
                   object-fit: cover;
@@ -523,8 +524,18 @@
     document.addEventListener('DOMContentLoaded', function() {
     const mainVideo = document.getElementById('mainVideo');
     const blurVideo = document.getElementById('blurVideo');
+    let isMainVideoPlaying = false;
+
+    mainVideo.addEventListener('play', function() {
+        isMainVideoPlaying = true;
+    });
+
+    mainVideo.addEventListener('pause', function() {
+        isMainVideoPlaying = false;
+    });
+
     setInterval(() => {
-        if (!mainVideo.paused && !blurVideo.paused) {
+        if (isMainVideoPlaying && !mainVideo.paused && !blurVideo.paused) {
             if (Math.abs(mainVideo.currentTime - blurVideo.currentTime) > 0.1) {
                 blurVideo.currentTime = mainVideo.currentTime;
             }
